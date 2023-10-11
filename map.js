@@ -20,7 +20,9 @@ console.log(map.size);
 console.log(map);
 
 // the order of the elements is equal to the order of insertion
+console.group('Order of items')
 map.forEach((item) => console.log(item));
+console.groupEnd()
 
 const objectFromMap = Object.fromEntries(map);
 console.log(objectFromMap);

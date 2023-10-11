@@ -1,6 +1,7 @@
 const objectsArr = [];
 const mapsArr = [];
 
+console.group("Create");
 console.time("createObjects");
 for (let i = 0; i < 1000000; i++) {
   const obj = {};
@@ -22,7 +23,9 @@ for (let i = 0; i < 1000000; i++) {
   mapsArr.push(map);
 }
 console.timeEnd("createMaps");
+console.groupEnd();
 
+console.group("Add");
 console.time("addInObjects");
 objectsArr.forEach((obj) => {
   obj.e = "test 3";
@@ -40,7 +43,9 @@ mapsArr.forEach((map) => {
   map.set("h", 4);
 });
 console.timeEnd("addInMaps");
+console.groupEnd();
 
+console.group("Delete");
 console.time("deleteInObjects");
 objectsArr.forEach((obj) => {
   delete obj.a;
@@ -58,7 +63,9 @@ mapsArr.forEach((map) => {
   map.delete("g");
 });
 console.timeEnd("deleteInObjects");
+console.groupEnd();
 
+console.group("Delete all");
 console.time("deleteAllInObjects");
 objectsArr.forEach((obj) => {
   for (const key in obj) {
@@ -74,3 +81,4 @@ mapsArr.forEach((map) => {
   map.clear();
 });
 console.timeEnd("deleteAllInMaps");
+console.groupEnd();

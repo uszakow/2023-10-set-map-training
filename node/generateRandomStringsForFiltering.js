@@ -14,6 +14,14 @@ function generateRandomString(minLength, maxLength) {
   return result;
 }
 
+// Function to shuffle an array in-place using the Fisher-Yates shuffle algorithm
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // Swap elements at indices i and j
+  }
+}
+
 // Function to create an array with the specified number of unique and duplicate strings
 function createArray() {
   const uniqueCount = 20000;
@@ -38,6 +46,9 @@ function createArray() {
     const randomIndex = Math.floor(Math.random() * uniqueCount);
     resultArray.push(Array.from(uniqueStrings)[randomIndex]);
   }
+
+  // Shuffle the entire array
+  shuffleArray(resultArray);
 
   return resultArray;
 }

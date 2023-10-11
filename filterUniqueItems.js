@@ -47,6 +47,7 @@ function uniqueValuesObj(arr) {
   arr.forEach((item) => (obj[item] = item));
 
   return Object.values(obj);
+  // return obj
 }
 
 function uniqueValuesMap(arr) {
@@ -69,43 +70,43 @@ function uniqueValuesObjAndReduce(arr) {
 }
 
 // O(n)
-console.time("uniqueValuesSet");
+console.time("SET: uniqueValuesSet");
 uniqueValuesSet(data);
-console.timeEnd("uniqueValuesSet");
+console.timeEnd("SET: uniqueValuesSet");
 
 // O(n^2)
-console.time("uniqueValuesFilter");
+console.time("FILTER + INDEX OF: uniqueValuesFilter");
 uniqueValuesFilter(data);
-console.timeEnd("uniqueValuesFilter");
+console.timeEnd("FILTER + INDEX OF: uniqueValuesFilter");
 
 // O(n^2)
-console.time("uniqueValuesForEach");
+console.time("FOR EACH + INCLUDES: uniqueValuesForEach");
 uniqueValuesForEach(data);
-console.timeEnd("uniqueValuesForEach");
+console.timeEnd("FOR EACH + INCLUDES: uniqueValuesForEach");
 
 // O(n * m)
-console.time("uniqueValuesForEachWithUnshift");
+console.time("FOR EACH + INCLUDES + UNSHIFT: uniqueValuesForEachWithUnshift");
 uniqueValuesForEachWithUnshift(data);
-console.timeEnd("uniqueValuesForEachWithUnshift");
+console.timeEnd("FOR EACH + INCLUDES + UNSHIFT: uniqueValuesForEachWithUnshift");
 
 // O(n^2)
-console.time("uniqueValuesReduces");
+console.time("REDUCE + INCLUDES: uniqueValuesReduces");
 uniqueValuesReduces(data);
-console.timeEnd("uniqueValuesReduces");
+console.timeEnd("REDUCE + INCLUDES: uniqueValuesReduces");
 
 // O(n)
-console.time("uniqueValuesObj");
+console.time("OBJECT: uniqueValuesObj");
 uniqueValuesObj(data);
-console.timeEnd("uniqueValuesObj");
+console.timeEnd("OBJECT: uniqueValuesObj");
 
 // O(n)
-console.time("uniqueValuesMap");
+console.time("MAP: uniqueValuesMap");
 uniqueValuesMap(data);
-console.timeEnd("uniqueValuesMap");
+console.timeEnd("MAP: uniqueValuesMap");
 
 // O(n)
-console.time("uniqueValuesObjAndReduce");
+console.time("REDUCE + OBJECT: uniqueValuesObjAndReduce");
 uniqueValuesObjAndReduce(data);
-console.timeEnd("uniqueValuesObjAndReduce");
+console.timeEnd("REDUCE + OBJECT: uniqueValuesObjAndReduce");
 
 // console.log(uniqueValuesSet(data));

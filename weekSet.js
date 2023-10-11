@@ -26,20 +26,20 @@ if (!loggedUsers.includes(user2)) {
 
 console.log(loggedUsers);
 
-// /* Delete from array when log out */
-// const idx1 = loggedUsers.indexOf(user1);
-// if (idx1 !== -1) {
-//   loggedUsers.splice(idx1, 1);
-// }
-// console.log(loggedUsers);
+/* Delete from array when log out */
+const idx1 = loggedUsers.indexOf(user1);
+if (idx1 !== -1) {
+  loggedUsers.splice(idx1, 1);
+}
+console.log(loggedUsers);
 
-// const idx2 = loggedUsers.indexOf(user2);
-// if (idx2 !== -1) {
-//   loggedUsers.splice(idx2, 1);
-// }
-// console.log(loggedUsers);
-// user1 = null
-// user2 = null
+const idx2 = loggedUsers.indexOf(user2);
+if (idx2 !== -1) {
+  loggedUsers.splice(idx2, 1);
+}
+console.log(loggedUsers);
+user1 = null
+user2 = null
 
 /**
  * USING SET
