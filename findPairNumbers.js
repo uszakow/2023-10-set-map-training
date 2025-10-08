@@ -90,23 +90,75 @@ function findPairsTwoPointers(arr, targetSum) {
   return pairs;
 }
 
-const sumNumber = 520;
+function findPairsWithReusableHashMap(arr) {
+  const hashMap = new Map();
+
+  arr.forEach((num, index) => {
+    if (!hashMap.has(num)) {
+      hashMap.set(num, [index]);
+    } else {
+      hashMap.get(num).push(index);
+    }
+  });
+
+  return function (targetSum) {
+    const pairs = [];
+
+    for (const [num, listA] of hashMap) {
+      const complement = targetSum - num;
+
+      const listB = hashMap.get(complement);
+      if (!listB || num > complement) continue;
+
+      // for the case when targetSum is num + num
+      if (num === complement) {
+        for (let i = 0; i < listA.length; i++) {
+          for (let j = i + 1; j < listA.length; j++) {
+            pairs.push([{ [num]: i }, { [complement]: j }]);
+          }
+        }
+      } else {
+        for (const i of listA) {
+          for (const j of listB) {
+            pairs.push([{ [num]: i }, { [complement]: j }]);
+          }
+        }
+      }
+    }
+
+    return pairs;
+  };
+}
+
+const sumNumbers = [9, 52, 520, 5200, 52012, 520123, 104, 105, 106, 107];
+// const sumNumbers = [52];
 
 // O(n^2)
 console.time("Brute Force");
-const resultBruteForce = findPairsBruteForce(data, sumNumber);
+const resultBruteForce = sumNumbers.map((sum) =>
+  findPairsBruteForce(data, sum)
+);
 console.timeEnd("Brute Force");
 
 // O(n)
 console.time("Hash Map");
-const resultHashMap = findPairsWithHashMap(data, sumNumber);
+const resultHashMap = sumNumbers.map((sum) => findPairsWithHashMap(data, sum));
 console.timeEnd("Hash Map");
 
 // O(n log n)
 console.time("Pairs Two Pointers");
-const resultPairsTwoPointers = findPairsTwoPointers(data, sumNumber);
+const resultPairsTwoPointers = sumNumbers.map((sum) =>
+  findPairsTwoPointers(data, sum)
+);
 console.timeEnd("Pairs Two Pointers");
+
+// O(n) to build + O(1) to query
+const reusableHashMap = findPairsWithReusableHashMap(data);
+console.time("Reusable Hash Map");
+const resultReusableHashMap = sumNumbers.map((sum) => reusableHashMap(sum));
+console.timeEnd("Reusable Hash Map");
 
 console.log("resultBruteForce", resultBruteForce);
 console.log("resultHashMap", resultHashMap);
 console.log("resultPairsTwoPointers", resultPairsTwoPointers);
+console.log("resultReusableHashMap", resultReusableHashMap);
